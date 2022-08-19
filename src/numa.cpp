@@ -121,7 +121,7 @@ numa_tools::allocate(size_type num_pages, index_type node) const noexcept
 {
     if (num_pages == 0u) return {};
     // bypass numa allocation if on local node
-    if (node == local_node()) return allocate_malloc(num_pages);
+    // if (node == local_node()) return allocate_malloc(num_pages);
     // bypass numa allocation if node is not available
     if (!can_allocate_on(node)) return allocate_malloc(num_pages);
     auto ptr = numa_alloc_onnode(num_pages * page_size_, node);
